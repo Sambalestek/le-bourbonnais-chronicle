@@ -26,7 +26,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border mt-16">
+    <footer className="border-t-4 border-cream mt-16">
       <div className="container py-12">
         {/* Main footer */}
         <div className="flex flex-col md:flex-row justify-between gap-8 mb-12">

@@ -86,8 +86,8 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Section divider */}
-        <div className="my-12 border-t border-border" />
+        {/* Section divider with cream accent */}
+        <div className="my-12 border-t-2 border-cream" />
 
         {/* Secondary content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -118,24 +118,26 @@ const Index = () => {
         </div>
 
         {/* Newsletter */}
-        <div className="my-16 py-12 border-y border-border text-center max-w-2xl mx-auto">
-          <h2 className="font-serif text-2xl italic mb-2">Restez informé</h2>
-          <p className="text-muted-foreground mb-6">
-            Recevez les actualités du Bourbonnais directement dans votre boîte mail.
-          </p>
-          <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Votre adresse email"
-              className="flex-1 px-4 py-2 border border-border bg-background focus:outline-none focus:border-foreground transition-colors"
-            />
-            <button
-              type="submit"
-              className="px-6 py-2 bg-foreground text-background font-medium hover:bg-foreground/90 transition-colors"
-            >
-              S'abonner
-            </button>
-          </form>
+        <div className="my-16 py-12 px-6 bg-cream-light text-center">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="font-serif text-2xl italic mb-2">Restez informé</h2>
+            <p className="text-muted-foreground mb-6">
+              Recevez les actualités du Bourbonnais directement dans votre boîte mail.
+            </p>
+            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Votre adresse email"
+                className="flex-1 px-4 py-2 border border-cream bg-background focus:outline-none focus:border-foreground transition-colors"
+              />
+              <button
+                type="submit"
+                className="px-6 py-2 bg-foreground text-background font-medium hover:bg-foreground/90 transition-colors"
+              >
+                S'abonner
+              </button>
+            </form>
+          </div>
         </div>
       </main>
 
