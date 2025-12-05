@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, User } from "lucide-react";
 import logo from "@/assets/logo-transparent.png";
 
 const navLinks = [
@@ -65,19 +65,20 @@ export function Header() {
               </a>
             </div>
             
-            {/* Connexion & S'abonner on right */}
+            {/* Connexion & Je m'abonne on right */}
             <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-3">
               <a 
                 href="#" 
-                className="px-4 py-1.5 text-xs font-medium text-charcoal/80 border border-charcoal/30 rounded-full hover:border-charcoal/50 hover:text-charcoal transition-colors"
+                className="p-2 text-charcoal/70 hover:text-charcoal transition-colors"
+                aria-label="Connexion"
               >
-                Connexion
+                <User className="w-5 h-5" />
               </a>
               <a 
                 href="#" 
-                className="px-4 py-1.5 text-xs font-medium text-charcoal/80 border border-charcoal/30 rounded-full hover:border-charcoal/50 hover:text-charcoal transition-colors"
+                className="px-5 py-2 text-sm font-medium text-charcoal bg-[#E8E3B8] rounded-full hover:bg-[#DDD8A8] transition-colors"
               >
-                S'abonner
+                Je m'abonne
               </a>
             </div>
           </div>
