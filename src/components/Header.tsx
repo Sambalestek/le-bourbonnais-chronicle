@@ -37,7 +37,7 @@ export function Header() {
     <>
       <header className="bg-background">
         {/* Logo centered at top */}
-        <div className="flex justify-center pt-4 pb-2">
+        <div className="flex justify-center pt-4 pb-2" style={{ backgroundColor: '#F3EEC8' }}>
           <a href="/">
             <img 
               src={logo} 
