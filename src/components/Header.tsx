@@ -30,21 +30,48 @@ const menuCategories = [
   },
 ];
 
+// Format current date in French
+const formatDate = () => {
+  const days = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+  const months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+  const now = new Date();
+  return `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+};
+
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
       <header className="bg-background">
-        {/* Logo centered at top */}
-        <div className="flex justify-center pt-2 pb-1 bg-cream">
-          <a href="/">
-            <img 
-              src={logo} 
-              alt="Le Petit Bourbonnais" 
-              className="h-28 md:h-32 lg:h-36 w-auto"
-            />
-          </a>
+        {/* Logo banner with date and location */}
+        <div className="bg-cream border-y border-charcoal/20">
+          <div className="container relative py-3">
+            {/* Date on left */}
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:block">
+              <span className="text-xs tracking-wide text-charcoal/70 font-medium">
+                {formatDate()}
+              </span>
+            </div>
+            
+            {/* Logo centered */}
+            <div className="flex justify-center">
+              <a href="/">
+                <img 
+                  src={logo} 
+                  alt="Le Petit Bourbonnais" 
+                  className="h-24 md:h-28 lg:h-32 w-auto"
+                />
+              </a>
+            </div>
+            
+            {/* Location on right */}
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:block">
+              <span className="text-xs tracking-wide text-charcoal/70 font-medium">
+                Moulins, France
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Navigation bar */}
