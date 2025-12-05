@@ -1,148 +1,123 @@
 import { useState } from "react";
-import { Search, Mail, User, Menu, X, ChevronDown } from "lucide-react";
+import { Search, Menu, X } from "lucide-react";
 import logo from "@/assets/logo.jpg";
 
-const menuItems = [
+const navLinks = [
+  { label: "Populaire", href: "#" },
+  { label: "Récent", href: "#" },
+  { label: "Newsletters", href: "#" },
+];
+
+const menuCategories = [
   {
-    label: "Actualités",
-    submenu: [
-      { label: "Politique locale", href: "#" },
-      { label: "Économie locale", href: "#" },
-      { label: "Agriculture & Ruralité", href: "#" },
-      { label: "Industrie & Entreprises", href: "#" },
-    ],
+    title: "Actualités",
+    links: ["Politique locale", "Économie", "Agriculture & Ruralité", "Industrie"],
   },
   {
-    label: "Société",
-    submenu: [
-      { label: "Éducation", href: "#" },
-      { label: "Santé", href: "#" },
-      { label: "Initiatives citoyennes", href: "#" },
-    ],
+    title: "Société",
+    links: ["Éducation", "Santé", "Initiatives citoyennes"],
   },
   {
-    label: "Culture",
-    submenu: [
-      { label: "Patrimoine", href: "#" },
-      { label: "Livres", href: "#" },
-      { label: "Cinéma", href: "#" },
-      { label: "Musiques & spectacles", href: "#" },
-    ],
+    title: "Culture",
+    links: ["Patrimoine", "Livres", "Cinéma", "Musiques & spectacles"],
   },
-  { label: "Faits divers", href: "#" },
-  { label: "Sports", href: "#" },
-  { label: "Environnement", href: "#" },
-  { label: "Portraits", href: "#" },
   {
-    label: "Bonnes adresses",
-    submenu: [
-      { label: "Restaurants", href: "#" },
-      { label: "Producteurs locaux", href: "#" },
-      { label: "Hébergements", href: "#" },
-      { label: "Idées week-end", href: "#" },
-    ],
+    title: "À découvrir",
+    links: ["Portraits", "Bonnes adresses", "Agenda", "Vie pratique"],
   },
-  { label: "Agenda", href: "#" },
 ];
 
 export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      {/* Top bar */}
-      <div className="border-b border-border/50">
-        <div className="container flex items-center justify-between py-2 text-sm text-muted-foreground">
-          <span>Jeudi 5 décembre 2025</span>
-          <div className="flex items-center gap-4">
-            <button className="editorial-link flex items-center gap-1 hover:text-foreground transition-colors">
-              <Mail className="w-4 h-4" />
-              <span className="hidden sm:inline">Newsletter</span>
-            </button>
-            <button className="editorial-link flex items-center gap-1 hover:text-foreground transition-colors">
-              <User className="w-4 h-4" />
-              <span className="hidden sm:inline">Connexion</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Main header */}
-      <div className="container">
-        <div className="flex items-center justify-between py-4">
-          {/* Logo */}
-          <a href="/" className="flex items-center gap-3">
-            <img src={logo} alt="Le Petit Bourbonnais" className="h-12 md:h-16 w-auto" />
-          </a>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {menuItems.map((item) => (
-              <div
-                key={item.label}
-                className="relative group"
-                onMouseEnter={() => item.submenu && setActiveSubmenu(item.label)}
-                onMouseLeave={() => setActiveSubmenu(null)}
+    <>
+      <header className="sticky top-0 z-50 bg-background border-b border-border">
+        <div className="container">
+          <div className="flex items-center justify-between h-14">
+            {/* Left */}
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="p-2 -ml-2 hover:bg-secondary transition-colors"
+                aria-label="Menu"
               >
-                <a
-                  href={item.href || "#"}
-                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors editorial-link"
-                >
-                  {item.label}
-                  {item.submenu && <ChevronDown className="w-3 h-3" />}
-                </a>
-                
-                {item.submenu && activeSubmenu === item.label && (
-                  <div className="absolute top-full left-0 mt-0 py-2 bg-card border border-border shadow-lg min-w-[200px] animate-fade-in">
-                    {item.submenu.map((sub) => (
-                      <a
-                        key={sub.label}
-                        href={sub.href}
-                        className="block px-4 py-2 text-sm text-foreground/80 hover:bg-secondary hover:text-foreground transition-colors"
-                      >
-                        {sub.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
+                {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+              <button className="p-2 hover:bg-secondary transition-colors" aria-label="Rechercher">
+                <Search className="w-5 h-5" />
+              </button>
+              <nav className="hidden md:flex items-center gap-6">
+                {navLinks.map((link) => (
+                  <a key={link.label} href={link.href} className="nav-link">
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+            </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-2">
-            <button className="p-2 hover:bg-secondary rounded-sm transition-colors">
-              <Search className="w-5 h-5" />
-            </button>
-            <button
-              className="lg:hidden p-2 hover:bg-secondary rounded-sm transition-colors"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+            {/* Center - Logo */}
+            <a href="/" className="absolute left-1/2 -translate-x-1/2">
+              <h1 className="font-serif text-2xl md:text-3xl italic font-normal tracking-tight">
+                Le Petit Bourbonnais
+              </h1>
+            </a>
+
+            {/* Right */}
+            <div className="flex items-center gap-2">
+              <a
+                href="#"
+                className="hidden sm:inline-flex px-4 py-1.5 text-sm font-medium border border-foreground hover:bg-foreground hover:text-background transition-colors"
+              >
+                S'abonner
+              </a>
+              <a href="#" className="nav-link hidden sm:inline">
+                Connexion
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-border bg-card animate-fade-in">
-          <nav className="container py-4">
-            {menuItems.map((item) => (
-              <div key={item.label} className="border-b border-border/50 last:border-0">
-                <a
-                  href={item.href || "#"}
-                  className="flex items-center justify-between py-3 text-foreground/80 hover:text-foreground"
-                >
-                  {item.label}
-                  {item.submenu && <ChevronDown className="w-4 h-4" />}
+      {/* Full menu overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 bg-background pt-14 overflow-auto animate-fade-in">
+          <div className="container py-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {menuCategories.map((cat) => (
+                <div key={cat.title}>
+                  <h3 className="section-label mb-4">{cat.title}</h3>
+                  <ul className="space-y-3">
+                    {cat.links.map((link) => (
+                      <li key={link}>
+                        <a href="#" className="text-foreground hover:text-muted-foreground transition-colors">
+                          {link}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="mt-12 pt-8 border-t border-border">
+              <div className="flex flex-wrap gap-6">
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                  Faits divers
+                </a>
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                  Sports
+                </a>
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                  Environnement
+                </a>
+                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                  Opinions
                 </a>
               </div>
-            ))}
-          </nav>
+            </div>
+          </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
