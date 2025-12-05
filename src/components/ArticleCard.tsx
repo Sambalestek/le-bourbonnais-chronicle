@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 interface ArticleCardProps {
@@ -7,6 +8,7 @@ interface ArticleCardProps {
   image?: string;
   variant?: "featured" | "standard" | "compact" | "list";
   className?: string;
+  href?: string;
 }
 
 export function ArticleCard({
@@ -16,20 +18,25 @@ export function ArticleCard({
   image,
   variant = "standard",
   className,
+  href,
 }: ArticleCardProps) {
+  const Wrapper = href ? Link : "div";
+  const wrapperProps = href ? { to: href } : {};
   // Featured - Large center article
   if (variant === "featured") {
     return (
-      <article className={cn("article-hover cursor-pointer", className)}>
-        {image && (
-          <div className="mb-4">
-            <img src={image} alt={title} className="w-full h-auto" />
-          </div>
-        )}
-        {credit && <p className="credit-line mb-2">{credit}</p>}
-        <h2 className="headline-xl mb-3">{title}</h2>
-        {author && <p className="author-byline">{author}</p>}
-      </article>
+      <Wrapper {...wrapperProps as any}>
+        <article className={cn("article-hover cursor-pointer block", className)}>
+          {image && (
+            <div className="mb-4">
+              <img src={image} alt={title} className="w-full h-auto" />
+            </div>
+          )}
+          {credit && <p className="credit-line mb-2">{credit}</p>}
+          <h2 className="headline-xl mb-3">{title}</h2>
+          {author && <p className="author-byline">{author}</p>}
+        </article>
+      </Wrapper>
     );
   }
 
