@@ -48,8 +48,9 @@
 
     --radius: 0rem;
 
-    /* Custom colors */
-    --cream: 45 30% 96%;
+    /* Custom colors - Logo cream/yellow */
+    --cream: 50 61% 87%;
+    --cream-light: 50 61% 94%;
     --charcoal: 0 0% 15%;
     
     /* Sidebar */
@@ -137,6 +138,20 @@
   .section-label {
     @apply text-[11px] uppercase tracking-[0.2em] font-semibold text-accent;
     font-family: 'Source Sans 3', sans-serif;
+  }
+
+  /* Cream accent backgrounds */
+  .bg-cream {
+    background-color: hsl(var(--cream));
+  }
+  
+  .bg-cream-light {
+    background-color: hsl(var(--cream-light));
+  }
+  
+  /* Subtle cream border */
+  .border-cream {
+    border-color: hsl(var(--cream));
   }
 
   /* Article card hover */

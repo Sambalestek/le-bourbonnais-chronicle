@@ -60,7 +60,10 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        cream: "hsl(var(--cream))",
+        cream: {
+          DEFAULT: "hsl(var(--cream))",
+          light: "hsl(var(--cream-light))",
+        },
         charcoal: "hsl(var(--charcoal))",
       },
       fontFamily: {
