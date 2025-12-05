@@ -1,8 +1,20 @@
 import { useState } from "react";
-import { Search, Menu, X, User, ChevronDown } from "lucide-react";
+import { Search, Menu, X, User, ChevronDown, Facebook, Mail, MapPin } from "lucide-react";
 import logo from "@/assets/logo-transparent.png";
 
+const communes = [
+  "Moulins", "Vichy", "Montluçon", "Gannat", "Cusset", 
+  "Dompierre-sur-Besbre", "Commentry", "Bourbon-l'Archambault",
+  "Lapalisse", "Saint-Pourçain-sur-Sioule", "Varennes-sur-Allier"
+];
+
 const navLinks = [
+  { 
+    label: "Ma commune", 
+    href: "#",
+    icon: MapPin,
+    subLinks: communes
+  },
   { 
     label: "Actualités", 
     href: "#",
@@ -77,8 +89,24 @@ export function Header() {
               </a>
             </div>
             
-            {/* Connexion & Je m'abonne on right */}
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-3">
+            {/* Actions on right: Facebook, Newsletter, Connexion, Abonnement */}
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-2">
+              <a 
+                href="https://facebook.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-charcoal/70 hover:text-[#1877F2] transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a 
+                href="#newsletter" 
+                className="p-2 text-charcoal/70 hover:text-charcoal transition-colors"
+                aria-label="Newsletter"
+              >
+                <Mail className="w-5 h-5" />
+              </a>
               <a 
                 href="#" 
                 className="p-2 text-charcoal/70 hover:text-charcoal transition-colors"
@@ -88,7 +116,7 @@ export function Header() {
               </a>
               <a 
                 href="#" 
-                className="px-5 py-2 text-sm font-medium text-charcoal bg-[#D9D4A0] rounded-full hover:bg-[#CEC992] transition-colors"
+                className="px-5 py-2 text-sm font-medium text-charcoal bg-[#D0CA90] rounded-full hover:bg-[#C5BF85] transition-colors"
               >
                 Je m'abonne
               </a>
@@ -120,8 +148,9 @@ export function Header() {
                   <div key={link.label} className="relative group">
                     <a
                       href={link.href}
-                      className="flex items-center gap-1 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors py-3"
+                      className={`flex items-center gap-1 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors py-3 ${link.icon ? 'text-burgundy' : ''}`}
                     >
+                      {link.icon && <link.icon className="w-4 h-4" />}
                       {link.label}
                       {link.subLinks && (
                         <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
@@ -129,7 +158,7 @@ export function Header() {
                     </a>
                     {link.subLinks && (
                       <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <div className="bg-background border border-border rounded-lg shadow-lg py-2 min-w-[200px]">
+                        <div className={`bg-background border border-border rounded-lg shadow-lg py-2 ${link.icon ? 'min-w-[220px] max-h-[300px] overflow-y-auto' : 'min-w-[200px]'}`}>
                           {link.subLinks.map((subLink) => (
                             <a
                               key={subLink}
