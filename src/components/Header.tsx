@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Search, Menu, X } from "lucide-react";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo-transparent.png";
 
 const navLinks = [
   { label: "Populaire", href: "#" },
@@ -58,9 +58,7 @@ export function Header() {
 
             {/* Center - Logo */}
             <a href="/" className="absolute left-1/2 -translate-x-1/2">
-              <h1 className="font-serif text-2xl md:text-3xl italic font-normal tracking-tight">
-                Le Petit Bourbonnais
-              </h1>
+              <img src={logo} alt="Le Petit Bourbonnais" className="h-12 md:h-14 w-auto" />
             </a>
 
             {/* Right */}
