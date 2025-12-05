@@ -1,109 +1,76 @@
 import { cn } from "@/lib/utils";
 
 interface ArticleCardProps {
-  category: string;
   title: string;
-  excerpt?: string;
   author?: string;
-  date: string;
+  credit?: string;
   image?: string;
-  variant?: "default" | "featured" | "compact" | "horizontal";
+  variant?: "featured" | "standard" | "compact" | "list";
   className?: string;
 }
 
 export function ArticleCard({
-  category,
   title,
-  excerpt,
   author,
-  date,
+  credit,
   image,
-  variant = "default",
+  variant = "standard",
   className,
 }: ArticleCardProps) {
-  if (variant === "compact") {
-    return (
-      <article className={cn("article-card cursor-pointer group py-4 border-b border-border last:border-0", className)}>
-        <span className="category-badge">{category}</span>
-        <h3 className="text-article-title mt-1 group-hover:text-accent transition-colors">
-          {title}
-        </h3>
-        <time className="text-caption mt-2 block">{date}</time>
-      </article>
-    );
-  }
-
-  if (variant === "horizontal") {
-    return (
-      <article className={cn("article-card cursor-pointer group flex gap-4", className)}>
-        {image && (
-          <div className="w-32 h-24 flex-shrink-0 overflow-hidden">
-            <img
-              src={image}
-              alt={title}
-              className="article-image w-full h-full object-cover transition-transform duration-500"
-            />
-          </div>
-        )}
-        <div className="flex-1 min-w-0">
-          <span className="category-badge">{category}</span>
-          <h3 className="text-article-title mt-1 group-hover:text-accent transition-colors line-clamp-2">
-            {title}
-          </h3>
-          <time className="text-caption mt-2 block">{date}</time>
-        </div>
-      </article>
-    );
-  }
-
+  // Featured - Large center article
   if (variant === "featured") {
     return (
-      <article className={cn("article-card cursor-pointer group", className)}>
+      <article className={cn("article-hover cursor-pointer", className)}>
         {image && (
-          <div className="aspect-[4/3] overflow-hidden mb-4">
-            <img
-              src={image}
-              alt={title}
-              className="article-image w-full h-full object-cover transition-transform duration-500"
-            />
+          <div className="mb-4">
+            <img src={image} alt={title} className="w-full h-auto" />
           </div>
         )}
-        <span className="category-badge">{category}</span>
-        <h2 className="text-subheadline mt-2 group-hover:text-accent transition-colors">
-          {title}
-        </h2>
-        {excerpt && (
-          <p className="text-muted-foreground mt-3 line-clamp-3">{excerpt}</p>
-        )}
-        <div className="flex items-center gap-2 mt-4 text-caption">
-          {author && <span className="font-medium">{author}</span>}
-          {author && <span>•</span>}
-          <time>{date}</time>
-        </div>
+        {credit && <p className="credit-line mb-2">{credit}</p>}
+        <h2 className="headline-xl mb-3">{title}</h2>
+        {author && <p className="author-byline">{author}</p>}
       </article>
     );
   }
 
-  // Default variant
-  return (
-    <article className={cn("article-card cursor-pointer group", className)}>
-      {image && (
-        <div className="aspect-[16/10] overflow-hidden mb-3">
-          <img
-            src={image}
-            alt={title}
-            className="article-image w-full h-full object-cover transition-transform duration-500"
-          />
+  // Standard - Left column articles with images
+  if (variant === "standard") {
+    return (
+      <article className={cn("article-hover cursor-pointer pb-6 mb-6 border-b border-border last:border-0", className)}>
+        {image && (
+          <div className="mb-3">
+            <img src={image} alt={title} className="w-full h-auto aspect-[4/3] object-cover" />
+          </div>
+        )}
+        {credit && <p className="credit-line mb-2">{credit}</p>}
+        <h3 className="headline-md mb-2">{title}</h3>
+        {author && <p className="author-byline">{author}</p>}
+      </article>
+    );
+  }
+
+  // Compact - Right column list with small thumbnails
+  if (variant === "compact") {
+    return (
+      <article className={cn("article-hover cursor-pointer flex gap-4 pb-5 mb-5 border-b border-border last:border-0", className)}>
+        <div className="flex-1 min-w-0">
+          <h3 className="headline-sm mb-2">{title}</h3>
+          {author && <p className="author-byline">{author}</p>}
         </div>
-      )}
-      <span className="category-badge">{category}</span>
-      <h3 className="text-article-title mt-1 group-hover:text-accent transition-colors">
-        {title}
-      </h3>
-      {excerpt && (
-        <p className="text-muted-foreground text-sm mt-2 line-clamp-2">{excerpt}</p>
-      )}
-      <time className="text-caption mt-2 block">{date}</time>
+        {image && (
+          <div className="w-20 h-20 flex-shrink-0">
+            <img src={image} alt={title} className="w-full h-full object-cover" />
+          </div>
+        )}
+      </article>
+    );
+  }
+
+  // List - Simple text list
+  return (
+    <article className={cn("article-hover cursor-pointer py-4 border-b border-border last:border-0", className)}>
+      <h3 className="headline-sm">{title}</h3>
+      {author && <p className="author-byline mt-1">{author}</p>}
     </article>
   );
 }
