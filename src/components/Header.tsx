@@ -61,7 +61,7 @@ export function Header() {
           <div className="container relative py-3">
             {/* Date on left */}
             <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:block">
-              <span className="text-xs tracking-wide text-charcoal/70 font-medium">
+              <span className="text-xs tracking-wide text-charcoal/90 font-medium">
                 {formatDate()}
               </span>
             </div>
