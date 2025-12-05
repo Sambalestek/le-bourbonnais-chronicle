@@ -47,6 +47,7 @@ const Index = () => {
               author="Jean-Pierre Martin"
               credit="Illustration par Sophie Durand"
               image={heroImage}
+              href="/article/le-bourbonnais-terre-histoire-avenir"
             />
             <p className="deck-text mt-4">
               Entre patrimoine millénaire et innovations rurales, notre région se réinvente tout en préservant son authenticité.
