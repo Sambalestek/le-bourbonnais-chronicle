@@ -3,9 +3,12 @@ import { Search, Menu, X } from "lucide-react";
 import logo from "@/assets/logo-transparent.png";
 
 const navLinks = [
-  { label: "Populaire", href: "#" },
-  { label: "Récent", href: "#" },
-  { label: "Newsletters", href: "#" },
+  { label: "Actualités", href: "#" },
+  { label: "Société", href: "#" },
+  { label: "Culture", href: "#" },
+  { label: "Sports", href: "#" },
+  { label: "Portraits", href: "#" },
+  { label: "Agenda", href: "#" },
 ];
 
 const menuCategories = [
@@ -32,10 +35,10 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-background border-b border-border">
-        <div className="container">
-          <div className="flex items-center justify-between h-14">
-            {/* Left */}
+      <header className="bg-background">
+        {/* Top utility bar */}
+        <div className="border-b border-border">
+          <div className="container flex items-center justify-between h-10">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -47,39 +50,58 @@ export function Header() {
               <button className="p-2 hover:bg-secondary transition-colors" aria-label="Rechercher">
                 <Search className="w-5 h-5" />
               </button>
-              <nav className="hidden md:flex items-center gap-6">
-                {navLinks.map((link) => (
-                  <a key={link.label} href={link.href} className="nav-link">
-                    {link.label}
-                  </a>
-                ))}
-              </nav>
             </div>
-
-            {/* Center - Logo */}
-            <a href="/" className="absolute left-1/2 -translate-x-1/2">
-              <img src={logo} alt="Le Petit Bourbonnais" className="h-12 md:h-14 w-auto" />
-            </a>
-
-            {/* Right */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
               <a
                 href="#"
-                className="hidden sm:inline-flex px-4 py-1.5 text-sm font-medium border border-foreground hover:bg-foreground hover:text-background transition-colors"
+                className="px-4 py-1.5 text-sm font-medium border border-foreground hover:bg-foreground hover:text-background transition-colors"
               >
                 S'abonner
               </a>
-              <a href="#" className="nav-link hidden sm:inline">
+              <a href="#" className="nav-link">
                 Connexion
               </a>
             </div>
           </div>
         </div>
+
+        {/* Logo masthead - Large and centered */}
+        <div className="py-6 md:py-8 flex justify-center">
+          <a href="/" className="block">
+            <img 
+              src={logo} 
+              alt="Le Petit Bourbonnais" 
+              className="h-28 md:h-36 lg:h-44 w-auto"
+            />
+          </a>
+        </div>
+
+        {/* Navigation bar */}
+        <nav className="border-y border-border">
+          <div className="container">
+            <ul className="hidden md:flex items-center justify-center gap-8 h-12">
+              {navLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors uppercase tracking-wider"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            {/* Mobile: just show date */}
+            <div className="md:hidden flex items-center justify-center h-10 text-sm text-muted-foreground">
+              Jeudi 5 décembre 2025
+            </div>
+          </div>
+        </nav>
       </header>
 
       {/* Full menu overlay */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-background pt-14 overflow-auto animate-fade-in">
+        <div className="fixed inset-0 z-40 bg-background pt-10 overflow-auto animate-fade-in">
           <div className="container py-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {menuCategories.map((cat) => (
