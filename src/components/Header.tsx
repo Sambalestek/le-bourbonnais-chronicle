@@ -65,11 +65,20 @@ export function Header() {
               </a>
             </div>
             
-            {/* Location on right */}
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:block">
-              <span className="text-xs tracking-wide text-charcoal/70 font-medium">
-                Moulins, France
-              </span>
+            {/* Connexion & S'abonner on right */}
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-3">
+              <a 
+                href="#" 
+                className="px-4 py-1.5 text-xs font-medium text-charcoal/80 border border-charcoal/30 rounded-full hover:border-charcoal/50 hover:text-charcoal transition-colors"
+              >
+                Connexion
+              </a>
+              <a 
+                href="#" 
+                className="px-4 py-1.5 text-xs font-medium text-charcoal/80 border border-charcoal/30 rounded-full hover:border-charcoal/50 hover:text-charcoal transition-colors"
+              >
+                S'abonner
+              </a>
             </div>
           </div>
         </div>
@@ -105,14 +114,11 @@ export function Header() {
                 ))}
               </nav>
 
-              {/* Right - Actions */}
-              <div className="flex items-center gap-3">
-                <a href="#" className="text-sm text-foreground/80 hover:text-foreground transition-colors hidden sm:inline">
-                  Connexion
-                </a>
-                <a
-                  href="#"
-                  className="px-4 py-1.5 text-sm font-medium bg-accent text-accent-foreground hover:bg-accent/90 transition-colors"
+              {/* Right - Actions (mobile only) */}
+              <div className="flex items-center gap-2 md:hidden">
+                <a 
+                  href="#" 
+                  className="px-3 py-1 text-xs font-medium text-foreground/80 border border-border rounded-full hover:border-foreground/50 transition-colors"
                 >
                   S'abonner
                 </a>
