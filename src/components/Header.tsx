@@ -35,67 +35,64 @@ export function Header() {
 
   return (
     <>
-      <header className="bg-background relative">
-        {/* Main header bar with logo breaking through */}
-        <div className="container">
-          <div className="relative flex items-end justify-between h-28 md:h-36">
-            {/* Left side - Menu, Search, Nav */}
-            <div className="flex items-center gap-4 pb-3">
-              <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="p-2 -ml-2 hover:bg-secondary transition-colors"
-                aria-label="Menu"
-              >
-                {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
-              <button className="p-2 hover:bg-secondary transition-colors" aria-label="Rechercher">
-                <Search className="w-5 h-5" />
-              </button>
-              <nav className="hidden lg:flex items-center gap-6 ml-4">
-                {navLinks.slice(0, 3).map((link) => (
-                  <a key={link.label} href={link.href} className="nav-link">
-                    {link.label}
-                  </a>
-                ))}
-              </nav>
-            </div>
-
-            {/* Center - Logo breaking out of the bar */}
-            <a href="/" className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-2 z-10">
-              <img 
-                src={logo} 
-                alt="Le Petit Bourbonnais" 
-                className="h-32 md:h-40 lg:h-48 w-auto"
-              />
-            </a>
-
-            {/* Right side - Actions */}
-            <div className="flex items-center gap-4 pb-3">
-              <nav className="hidden lg:flex items-center gap-6 mr-4">
-                {navLinks.slice(3).map((link) => (
-                  <a key={link.label} href={link.href} className="nav-link">
-                    {link.label}
-                  </a>
-                ))}
-              </nav>
-              <a href="#" className="nav-link hidden sm:inline">
-                Connexion
-              </a>
-              <a
-                href="#"
-                className="px-4 py-1.5 text-sm font-medium bg-accent text-accent-foreground hover:bg-accent/90 transition-colors"
-              >
-                S'abonner
-              </a>
-            </div>
-
-            {/* Horizontal line that goes behind the logo */}
-            <div className="absolute bottom-3 left-0 right-0 h-px bg-border" />
-          </div>
+      <header className="bg-background">
+        {/* Logo centered at top */}
+        <div className="flex justify-center pt-4 pb-2">
+          <a href="/">
+            <img 
+              src={logo} 
+              alt="Le Petit Bourbonnais" 
+              className="h-24 md:h-28 lg:h-32 w-auto"
+            />
+          </a>
         </div>
 
-        {/* Spacer for the logo overflow */}
-        <div className="h-8 md:h-10" />
+        {/* Navigation bar */}
+        <div className="border-y border-border">
+          <div className="container">
+            <div className="flex items-center justify-between h-12">
+              {/* Left - Menu & Search */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  className="p-2 -ml-2 hover:bg-secondary transition-colors"
+                  aria-label="Menu"
+                >
+                  {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                </button>
+                <button className="p-2 hover:bg-secondary transition-colors" aria-label="Rechercher">
+                  <Search className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Center - Navigation */}
+              <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+
+              {/* Right - Actions */}
+              <div className="flex items-center gap-3">
+                <a href="#" className="text-sm text-foreground/80 hover:text-foreground transition-colors hidden sm:inline">
+                  Connexion
+                </a>
+                <a
+                  href="#"
+                  className="px-4 py-1.5 text-sm font-medium bg-accent text-accent-foreground hover:bg-accent/90 transition-colors"
+                >
+                  S'abonner
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
 
       {/* Full menu overlay */}
@@ -117,22 +114,6 @@ export function Header() {
                   </ul>
                 </div>
               ))}
-            </div>
-            <div className="mt-12 pt-8 border-t border-border">
-              <div className="flex flex-wrap gap-6">
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                  Faits divers
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                  Environnement
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                  Opinions
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                  Bonnes adresses
-                </a>
-              </div>
             </div>
           </div>
         </div>
