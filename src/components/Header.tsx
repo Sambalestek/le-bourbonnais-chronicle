@@ -1,11 +1,23 @@
 import { useState } from "react";
-import { Search, Menu, X, User } from "lucide-react";
+import { Search, Menu, X, User, ChevronDown } from "lucide-react";
 import logo from "@/assets/logo-transparent.png";
 
 const navLinks = [
-  { label: "Actualités", href: "#" },
-  { label: "Société", href: "#" },
-  { label: "Culture", href: "#" },
+  { 
+    label: "Actualités", 
+    href: "#",
+    subLinks: ["Politique locale", "Économie", "Agriculture & Ruralité", "Industrie"]
+  },
+  { 
+    label: "Société", 
+    href: "#",
+    subLinks: ["Éducation", "Santé", "Initiatives citoyennes"]
+  },
+  { 
+    label: "Culture", 
+    href: "#",
+    subLinks: ["Patrimoine", "Livres", "Cinéma", "Musiques & spectacles"]
+  },
   { label: "Sports", href: "#" },
   { label: "Portraits", href: "#" },
   { label: "Agenda", href: "#" },
@@ -76,7 +88,7 @@ export function Header() {
               </a>
               <a 
                 href="#" 
-                className="px-5 py-2 text-sm font-medium text-charcoal bg-[#E8E3B8] rounded-full hover:bg-[#DDD8A8] transition-colors"
+                className="px-5 py-2 text-sm font-medium text-charcoal bg-[#D9D4A0] rounded-full hover:bg-[#CEC992] transition-colors"
               >
                 Je m'abonne
               </a>
@@ -103,15 +115,34 @@ export function Header() {
               </div>
 
               {/* Center - Navigation */}
-              <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+              <nav className="hidden md:flex items-center justify-center flex-1 gap-6 lg:gap-8">
                 {navLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-                  >
-                    {link.label}
-                  </a>
+                  <div key={link.label} className="relative group">
+                    <a
+                      href={link.href}
+                      className="flex items-center gap-1 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors py-3"
+                    >
+                      {link.label}
+                      {link.subLinks && (
+                        <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
+                      )}
+                    </a>
+                    {link.subLinks && (
+                      <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <div className="bg-background border border-border rounded-lg shadow-lg py-2 min-w-[200px]">
+                          {link.subLinks.map((subLink) => (
+                            <a
+                              key={subLink}
+                              href="#"
+                              className="block px-4 py-2 text-sm text-foreground/80 hover:bg-secondary hover:text-foreground transition-colors"
+                            >
+                              {subLink}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 ))}
               </nav>
 
