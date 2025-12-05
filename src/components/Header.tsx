@@ -66,7 +66,7 @@ export function Header() {
         </div>
 
         {/* Logo masthead - Large and centered */}
-        <div className="py-6 md:py-8 flex justify-center">
+        <div className="py-3 md:py-4 flex justify-center">
           <a href="/" className="block">
             <img 
               src={logo} 
