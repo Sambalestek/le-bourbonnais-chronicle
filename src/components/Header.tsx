@@ -37,12 +37,12 @@ export function Header() {
     <>
       <header className="bg-background">
         {/* Logo centered at top */}
-        <div className="flex justify-center pt-4 pb-2" style={{ backgroundColor: '#F3EEC8' }}>
+        <div className="flex justify-center pt-2 pb-1" style={{ backgroundColor: '#F3EEC8' }}>
           <a href="/">
             <img 
               src={logo} 
               alt="Le Petit Bourbonnais" 
-              className="h-24 md:h-28 lg:h-32 w-auto"
+              className="h-28 md:h-32 lg:h-36 w-auto"
             />
           </a>
         </div>
